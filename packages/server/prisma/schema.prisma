@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      Int      @id @default(autoincrement())
+  userName                String
+  email                   String
+  permission              String   @default("USER")
+  password                String
+  avatar                  String
+  status                  Int      @default(1)
+  level                   Int      @default(0)
+  coin                    Int      @default(0)
+  totalCoinBetX50Game     Int      @default(0)
+  totalCoinBetX50GameWin  Int      @default(0)
+  totalCoinBetX2Game      Int      @default(0)
+  totalCoinBetX2GameWin   Int      @default(0)
+  totalCoinBetHiloGame    Int      @default(0)
+  totalCoinBetHiloGameWin Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model X2Game {
+  id                      Int      @id @default(autoincrement())
+  gameId                Int
+  roundNumber                   String
+  roundNumberWin              String   @default("USER")
+  colorWin                String
+  hashSalt                  String
+  roundHash                  Int      @default(1)
+  rotate                   Int      @default(0)
+  coin                    Int      @default(0)
+  totalCoinBetX50Game     Int      @default(0)
+  totalCoinBetX50GameWin  Int      @default(0)
+  totalCoinBetX2Game      Int      @default(0)
+  totalCoinBetX2GameWin   Int      @default(0)
+  totalCoinBetHiloGame    Int      @default(0)
+  totalCoinBetHiloGameWin Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
