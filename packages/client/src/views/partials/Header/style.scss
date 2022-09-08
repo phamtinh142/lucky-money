@@ -1,0 +1,47 @@
+.header {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 66px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-image: url('../../../assets/images/backgrounds/head-bg.jpg');
+  .logo-wrapper {
+    height: 66px;
+    width: 135px;
+    .logo-branch {
+      height: 46px;
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  .header-profile {
+    display: flex;
+    flex-direction: row;
+    line-height: 66px !important;
+    #avatar {
+      line-height: 66px !important;
+    }
+    #btn-profile {
+      text-transform: none;
+      color: white;
+    }
+    #menu-profile {
+      box-shadow: none !important;
+      background-color: #464646 !important;
+    }
+  }
+  .btn-action-wrapper {
+    line-height: 66px !important;
+    padding-right: 10px;
+    #btn-login {
+      margin-right: 5px;
+      background-color: #ff9b0a;
+      text-transform: none !important;
+    }
+    #btn-register {
+      background-color: #373c40;
+      text-transform: none !important;
+    }
+  }
+}
