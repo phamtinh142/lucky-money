@@ -12,21 +12,14 @@ import compression from "compression";
 import RateLimit from "express-rate-limit";
 import helmet from "helmet";
 import morgan from "morgan";
-import {
-  initializeTransactionalContext,
-  patchTypeORMRepositoryWithBaseRepository,
-} from "typeorm-transactional-cls-hooked";
 
 import { AppModule } from "./app.module";
 import { HttpExceptionFilter } from "./common/filters/bad-request.filter";
-import { QueryFailedFilter } from "./common/filters/query-failed.filter";
 import { setupSwagger } from "./setup-swagger";
 import { ApiConfigService } from "./shared/services/api-config.service";
 import { SharedModule } from "./shared/shared.module";
 
 export async function bootstrap(): Promise<NestExpressApplication> {
-  initializeTransactionalContext();
-  patchTypeORMRepositoryWithBaseRepository();
   const app = await NestFactory.create<NestExpressApplication>(
     AppModule,
     new ExpressAdapter(),
@@ -46,10 +39,7 @@ export async function bootstrap(): Promise<NestExpressApplication> {
 
   const reflector = app.get(Reflector);
 
-  app.useGlobalFilters(
-    new HttpExceptionFilter(reflector),
-    new QueryFailedFilter(reflector),
-  );
+  app.useGlobalFilters(new HttpExceptionFilter(reflector));
 
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 

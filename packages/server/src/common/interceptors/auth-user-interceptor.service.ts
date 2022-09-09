@@ -4,8 +4,8 @@ import type {
   NestInterceptor,
 } from "@nestjs/common";
 import { Injectable } from "@nestjs/common";
+import { User } from "@prisma/client";
 
-import type { UserEntity } from "../../modules/user/user.entity";
 import { ContextProvider } from "../../providers/context.provider";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AuthUserInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): any {
     const request = context.switchToHttp().getRequest();
 
-    const user = <UserEntity>request.user;
+    const user = <User>request.user;
     ContextProvider.setAuthUser(user);
 
     return next.handle();

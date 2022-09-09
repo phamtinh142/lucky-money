@@ -9,10 +9,9 @@ import {
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 
 import { RoleTypeEnum } from "../../common/constants/role-type.enum";
-import { Auth, UUIDParam } from "../../common/decorators/http.decorator";
+import { Auth } from "../../common/decorators/http.decorator";
 import { PageDto } from "../../common/dto/page.dto";
-import { UserDto } from "./dto/user.dto";
-import { UsersPageOptionsDto } from "./dto/users-page-options.dto";
+import { UserDto, UsersPageOptionsDto } from "./dto/user.dto";
 import { UserService } from "./user.service";
 
 @Controller("users")
@@ -33,17 +32,5 @@ export class UserController {
     pageOptionsDto: UsersPageOptionsDto,
   ): Promise<PageDto<UserDto>> {
     return this.userService.getUsers(pageOptionsDto);
-  }
-
-  @Get(":id")
-  @Auth([RoleTypeEnum.USER])
-  @HttpCode(HttpStatus.OK)
-  @ApiResponse({
-    status: HttpStatus.OK,
-    description: "Get users list",
-    type: UserDto,
-  })
-  getUser(@UUIDParam("id") userId: string): Promise<UserDto> {
-    return this.userService.getUser(userId);
   }
 }

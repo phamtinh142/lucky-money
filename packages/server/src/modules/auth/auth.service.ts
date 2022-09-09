@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { User } from "@prisma/client";
 
 import { TokenTypeEnum } from "../../common/constants/token-type.enum";
 import { UserNotFoundException } from "../../common/exceptions/user-not-found.exception";
@@ -30,8 +31,8 @@ export class AuthService {
     });
   }
 
-  async validateUser(userLoginDto: UserLoginDto): Promise<UserEntity> {
-    const user = await this.userService.findOne({
+  async validateUser(userLoginDto: UserLoginDto): Promise<User> {
+    const user = await this.userService.getUser({
       email: userLoginDto.email,
     });
     const isPasswordValid = await UtilsProvider.validateHash(

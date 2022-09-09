@@ -7,7 +7,6 @@ import {
   IsString,
   MinLength,
 } from "class-validator";
-import { Column } from "typeorm";
 
 import { Trim } from "../../../common/decorators/transforms.decorator";
 
@@ -37,7 +36,6 @@ export class UserRegisterDto {
   readonly password: string;
 
   @ApiProperty()
-  @Column()
   @IsNumber()
   @IsOptional()
   phone: string;

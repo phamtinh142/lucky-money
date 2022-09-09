@@ -1,6 +1,5 @@
+import { User } from "@prisma/client";
 import requestContext from "request-context";
-
-import type { UserEntity } from "../modules/user/user.entity";
 
 export class ContextProvider {
   private static readonly nameSpace = "request";
@@ -22,7 +21,7 @@ export class ContextProvider {
     return `${ContextProvider.nameSpace}.${key}`;
   }
 
-  static setAuthUser(user: UserEntity): void {
+  static setAuthUser(user: User): void {
     ContextProvider.set(ContextProvider.authUserKey, user);
   }
 
@@ -34,7 +33,7 @@ export class ContextProvider {
     return ContextProvider.get(ContextProvider.languageKey);
   }
 
-  static getAuthUser(): UserEntity {
+  static getAuthUser(): User {
     return ContextProvider.get(ContextProvider.authUserKey);
   }
 }

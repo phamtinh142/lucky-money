@@ -8,7 +8,8 @@ module.exports = {
   ignorePatterns: ['.eslintrc.js'],
   parserOptions: {
     ecmaVersion: 2018,
-    project: './tsconfig.eslint.json',
+    project: 'tsconfig.eslint.json',
+    tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
   extends: [
@@ -228,7 +229,7 @@ module.exports = {
     'import/no-deprecated': 'warn',
     'import/no-internal-modules': 'off',
     'import/order': 'off',
-    'max-classes-per-file': ['error', 1],
+    // 'max-classes-per-file': ['error', 1],
     'max-len': [
       'error',
       {
@@ -396,6 +397,7 @@ module.exports = {
     'unicorn/prevent-abbreviations': 'off',
     'unicorn/string-content': 'off',
     'unicorn/throw-new-error': 'error',
+    '@typescript-eslint/consistent-type-imports': 0
 
   },
 };
