@@ -1,9 +1,8 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { User } from "@prisma/client";
+import { Role, User } from "@prisma/client";
 import { ExtractJwt, Strategy } from "passport-jwt";
 
-import type { RoleTypeEnum } from "../../common/constants/role-type.enum";
 import { TokenTypeEnum } from "../../common/constants/token-type.enum";
 import { AppConfigService } from "../../configs/app/config.service";
 import { UserService } from "../../modules/user/user.service";
@@ -22,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(args: {
     userId: string;
-    permission: RoleTypeEnum;
+    permission: Role;
     type: TokenTypeEnum;
   }): Promise<User> {
     if (args.type !== TokenTypeEnum.ACCESS_TOKEN) {

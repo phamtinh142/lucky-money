@@ -1,10 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class TokenPayloadDto {
-  @ApiProperty()
+  @ApiProperty({ enum: Number })
   expiresIn: number;
 
-  @ApiProperty()
+  @ApiProperty({ enum: String })
   accessToken: string;
 
   constructor(data: { expiresIn: number; accessToken: string }) {

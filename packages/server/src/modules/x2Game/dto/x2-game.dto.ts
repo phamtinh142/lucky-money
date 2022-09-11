@@ -1,37 +1,37 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 
 import { StatusGameEnum } from "../../../common/constants/status-game.enum";
 import { AbstractDto } from "../../../common/dto/abstract.dto";
 
 export class X2GameDto extends AbstractDto {
-  @ApiPropertyOptional()
+  @ApiProperty()
   gameId: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   roundNumber: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   roundNumberWin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   colorWin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   hashSalt: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   roundHash: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   rotate: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty({ enum: StatusGameEnum })
   status: StatusGameEnum;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   timeStamp: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coin: number;
 
   constructor(partial: Partial<X2GameDto>) {

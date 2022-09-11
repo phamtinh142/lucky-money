@@ -4,10 +4,10 @@ import { UserDto } from "../../user/dto/user.dto";
 import { TokenPayloadDto } from "./token-payload.dto";
 
 export class LoginPayloadDto {
-  @ApiProperty({ type: UserDto })
+  @ApiProperty({ enum: UserDto })
   user: UserDto;
 
-  @ApiProperty({ type: TokenPayloadDto })
+  @ApiProperty({ enum: TokenPayloadDto })
   token: TokenPayloadDto;
 
   constructor(user: UserDto, token: TokenPayloadDto) {

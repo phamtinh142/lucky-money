@@ -9,15 +9,15 @@ import {
 } from "@nestjs/common";
 import type { Type } from "@nestjs/common/interfaces";
 import { ApiBearerAuth, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { Role } from "@prisma/client";
 
-import type { RoleTypeEnum } from "../constants/role-type.enum";
 import { AuthGuard } from "../guards/auth.guard";
 import { RolesGuard } from "../guards/roles.guard";
 import { AuthUserInterceptor } from "../interceptors/auth-user-interceptor.service";
 import { PublicRoute } from "./public-route.decorator";
 
 export function Auth(
-  roles: RoleTypeEnum[] = [],
+  roles: Role[] = [],
   options?: Partial<{ public: boolean }>,
 ): MethodDecorator {
   const isPublicRoute = options?.public;

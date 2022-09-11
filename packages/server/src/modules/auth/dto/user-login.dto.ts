@@ -4,10 +4,10 @@ import { IsEmail, IsString } from "class-validator";
 export class UserLoginDto {
   @IsString()
   @IsEmail()
-  @ApiProperty()
+  @ApiProperty({ enum: String })
   readonly email: string;
 
   @IsString()
-  @ApiProperty()
+  @ApiProperty({ enum: String })
   readonly password: string;
 }

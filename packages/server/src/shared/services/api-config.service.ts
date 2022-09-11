@@ -2,11 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { isNil } from "lodash";
 
-import type {
-  IConfigApp,
-  IConfigAuth,
-  IConfigNAT,
-} from "../../common/interfaces";
+import type { IConfigApp, IConfigAuth } from "../../common/interfaces";
 
 @Injectable()
 export class ApiConfigService {
@@ -52,17 +48,6 @@ export class ApiConfigService {
 
   get documentationEnabled(): boolean {
     return this.getBoolean("ENABLE_DOCUMENTATION");
-  }
-
-  get natsEnabled(): boolean {
-    return this.getBoolean("NATS_ENABLED");
-  }
-
-  get natsConfig(): IConfigNAT {
-    return {
-      host: this.getString("NATS_HOST"),
-      port: this.getNumber("NATS_PORT"),
-    };
   }
 
   get authConfig(): IConfigAuth {

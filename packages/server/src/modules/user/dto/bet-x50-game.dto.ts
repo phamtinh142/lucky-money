@@ -1,34 +1,34 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 
 import { StatusBetGameEnum } from "../../../common/constants/status-bet-game.enum";
 import { AbstractDto } from "../../../common/dto/abstract.dto";
 
 export class BetX50GameDto extends AbstractDto {
-  @ApiPropertyOptional()
+  @ApiProperty()
   gameId: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   userId: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coinBetBlue: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coinBetRed: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coinBetGreen: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coinBetYellow: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coinWin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   betTime: Date;
 
-  @ApiPropertyOptional()
+  @ApiProperty({ enum: StatusBetGameEnum })
   status: StatusBetGameEnum;
 
   constructor(partial: Partial<BetX50GameDto>) {

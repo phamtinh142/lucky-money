@@ -1,37 +1,37 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 
 import { StatusGameEnum } from "../../../common/constants/status-game.enum";
 import { AbstractDto } from "../../../common/dto/abstract.dto";
 
 export class HiloGameDto extends AbstractDto {
-  @ApiPropertyOptional()
+  @ApiProperty()
   gameId: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   roundNumber: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   hashSalt: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   roundHash: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   cardColor: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   cardValue: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   cardSign: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty({ enum: StatusGameEnum })
   status: StatusGameEnum;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   timeStamp: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coin: number;
 
   constructor(partial: Partial<HiloGameDto>) {

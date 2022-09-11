@@ -1,12 +1,6 @@
-import {
-  ApiProperty,
-  ApiPropertyOptional,
-  OmitType,
-  PartialType,
-  PickType,
-} from "@nestjs/swagger";
+import { ApiProperty, OmitType, PartialType, PickType } from "@nestjs/swagger";
+import { Role } from "@prisma/client";
 
-import { RoleTypeEnum } from "../../../common/constants/role-type.enum";
 import { StatusUserEnum } from "../../../common/constants/status-user.enum";
 import { AbstractDto } from "../../../common/dto/abstract.dto";
 import { PageOptionsDto } from "../../../common/dto/page-options.dto";
@@ -15,43 +9,43 @@ export class UserDto extends AbstractDto {
   @ApiProperty()
   userName: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   email: string;
 
-  @ApiPropertyOptional({ enum: RoleTypeEnum })
-  permission: RoleTypeEnum;
+  @ApiProperty({ enum: Role })
+  permission: Role;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   password: string;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   avatar: string;
 
-  @ApiPropertyOptional({ enum: StatusUserEnum })
+  @ApiProperty({ enum: StatusUserEnum })
   status: StatusUserEnum;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   level: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   coin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetX50Game: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetX50GameWin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetX2Game: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetX2GameWin: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetHiloGame: number;
 
-  @ApiPropertyOptional()
+  @ApiProperty()
   totalCoinBetHiloGameWin: number;
 
   constructor(partial: Partial<UserDto>) {
@@ -66,9 +60,7 @@ export class FindUserDto extends PartialType(
 
 export class GetUserDto extends OmitType(UserDto, ["password"] as const) {}
 
-export class CreateUserDto extends PartialType(
-  OmitType(UserDto, ["id"] as const),
-) {}
+export class CreateUserDto extends OmitType(UserDto, ["id"] as const) {}
 
 export class UpdateUserDto extends PartialType(UserDto) {}
 

@@ -7,11 +7,11 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Role } from "@prisma/client";
 
-import { RoleTypeEnum } from "../../common/constants/role-type.enum";
 import { Auth } from "../../common/decorators/http.decorator";
 import { PageDto } from "../../common/dto/page.dto";
-import { UserDto, UsersPageOptionsDto } from "./dto/user.dto";
+import { GetUserDto, UsersPageOptionsDto } from "./dto/user.dto";
 import { UserService } from "./user.service";
 
 @Controller("users")
@@ -20,7 +20,7 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  @Auth([RoleTypeEnum.USER])
+  @Auth([Role.USER])
   @HttpCode(HttpStatus.OK)
   @ApiResponse({
     status: HttpStatus.OK,
@@ -30,7 +30,7 @@ export class UserController {
   getUsers(
     @Query(new ValidationPipe({ transform: true }))
     pageOptionsDto: UsersPageOptionsDto,
-  ): Promise<PageDto<UserDto>> {
+  ): Promise<GetUserDto[]> {
     return this.userService.getUsers(pageOptionsDto);
   }
 }

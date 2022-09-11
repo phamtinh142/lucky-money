@@ -1,42 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  MinLength,
-} from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
 
 import { Trim } from "../../../common/decorators/transforms.decorator";
 
 export class UserRegisterDto {
-  @ApiProperty()
+  @ApiProperty({ enum: String })
   @IsString()
   @IsNotEmpty()
   @Trim()
-  readonly firstName: string;
+  userName: string;
 
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  @Trim()
-  readonly lastName: string;
-
-  @ApiProperty()
+  @ApiProperty({ enum: String })
   @IsString()
   @IsEmail()
   @IsNotEmpty()
   @Trim()
-  readonly email: string;
+  email: string;
 
-  @ApiProperty({ minLength: 6 })
+  @ApiProperty({ minLength: 6, enum: String })
   @IsString()
   @MinLength(6)
-  readonly password: string;
-
-  @ApiProperty()
-  @IsNumber()
-  @IsOptional()
-  phone: string;
+  password: string;
 }

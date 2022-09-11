@@ -38,22 +38,17 @@ export class AuthController {
 
     const token = await this.authService.createToken(userEntity);
 
-    return new LoginPayloadDto(userEntity.toDto(), token);
+    return new LoginPayloadDto(userEntity, token);
   }
 
   @Post("register")
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: UserDto, description: "Successfully Registered" })
   @ApiFile({ name: "avatar" })
-  async userRegister(
+  userRegister(
     @Body() userRegisterDto: UserRegisterDto,
     @UploadedFile() file: IFile,
   ): Promise<UserDto> {
-    const createdUser = await this.userService.createUser(
-      userRegisterDto,
-      file,
-    );
-
-    return createdUser.toDto();
+    return this.userService.createUser(userRegisterDto, file);
   }
 }
