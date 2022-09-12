@@ -4,20 +4,20 @@ import { IsEmail, IsNotEmpty, IsString, MinLength } from "class-validator";
 import { Trim } from "../../../common/decorators/transforms.decorator";
 
 export class UserRegisterDto {
-  @ApiProperty({ enum: String })
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @Trim()
   userName: string;
 
-  @ApiProperty({ enum: String })
+  @ApiProperty()
   @IsString()
   @IsEmail()
   @IsNotEmpty()
   @Trim()
   email: string;
 
-  @ApiProperty({ minLength: 6, enum: String })
+  @ApiProperty({ minLength: 6 })
   @IsString()
   @MinLength(6)
   password: string;

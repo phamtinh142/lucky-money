@@ -11,7 +11,7 @@
           "args": ["${workspaceFolder}/src/main.ts"],
           "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
           "envFile": "${workspaceFolder}/.env",
-          "runtimeVersion": "default",
+          "runtimeVersion": "14.18.0",
           "sourceMaps": true,
           "cwd": "${workspaceRoot}",
       }

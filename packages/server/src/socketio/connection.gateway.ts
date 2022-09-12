@@ -11,6 +11,7 @@ import {
   WebSocketServer,
 } from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
+import { Client } from "socket.io/dist/client";
 
 import { ISubscribeSocket } from "./interfaces/subscribe-socket.interface";
 
@@ -21,7 +22,7 @@ export class ConnectionGateway
   @WebSocketServer()
   private server: Server;
 
-  private logger: Logger = new Logger("X2GameGateway");
+  private logger: Logger = new Logger(ConnectionGateway.name);
 
   handleConnection(client: Socket): any {
     this.logger.log(`Client connected: ${client.id}`);
@@ -52,8 +53,12 @@ export class ConnectionGateway
 
     await socket.join(arrRoom);
 
-    return this.server
-      .to(socket.id)
-      .emit("SUBSCRIBED", { action_str: "SUBSCRIBED", message: "Subscribed!" });
+    return this.server.to(socket.id).emit("SUBSCRIBED", {
+      action_str: "SUBSCRIBED",
+      message: "Subscribed!",
+      data: {
+        data,
+      },
+    });
   }
 }

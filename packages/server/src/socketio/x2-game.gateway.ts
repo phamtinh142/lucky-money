@@ -14,7 +14,7 @@ export class X2GameGateway {
   @WebSocketServer()
   private server: Server;
 
-  private logger: Logger = new Logger("X2GameGateway");
+  private logger: Logger = new Logger(X2GameGateway.name);
 
   @SubscribeMessage("retrieve_game_data_x2")
   async retrieveDataX2Game(@MessageBody() data: any): Promise<any> {}

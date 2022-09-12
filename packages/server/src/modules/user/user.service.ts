@@ -41,6 +41,8 @@ export class UserService {
   }
 
   getUser(dataInput: FindUserDto): Promise<User | null> {
+    this.prisma.user.
+
     return this.prisma.user.findFirst({
       where: dataInput,
     });
